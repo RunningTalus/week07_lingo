@@ -20,11 +20,12 @@ Translate
 
 1) When the user goes to the Translate page, they are presented with a form with the following fields:
 
-	A) Language of word to translate
+1A) Language of word to translate
 	
-	B) Language to translate it into
+1B) Language to translate it into
 	
-	C) Word to translate
+1C) Word to translate
+
 
 2) When they hit enter or the submit button, their word should be submitted to the server for translation.
 
@@ -58,34 +59,35 @@ Quiz
 
 12) After completing 3 quizzes (successfully or unsuccessfully) allow the user to take the following different types of quizzes:
 
-	A) Random - Default quiz type.
-	B) Hardest - The 10 words they have gotten wrong the most.
-	C) Least Practiced - The 10 words they have practiced the least.
-	D) Most Recent - The most recent 10 words they were tested on.
+12A) Random - Default quiz type.
+12B) Hardest - The 10 words they have gotten wrong the most.
+12C) Least Practiced - The 10 words they have practiced the least.
+12D) Most Recent - The most recent 10 words they were tested on.
 
 Progress
 
 1) All of the results from the user's quizzes should be saved to a Mongo database. Allow the user to view their overall results on the Progress page. Include the following pieces of information:
 
-	A) Total number of quizzes taken
+1A) Total number of quizzes taken
 
-	B) Number of quizzes passed
+1B) Number of quizzes passed
 
-	C) Number of quizzes failed
+1C) Number of quizzes failed
 
-	D) % quizzes passed
+1D) % quizzes passed
 
-	E) Total number of words translated
+1E) Total number of words translated
 
-	F) Number of words correctly translated
+1F) Number of words correctly translated
 
-	G) Number of words incorrectly translated
+1G) Number of words incorrectly translated
 
-	H) % words translated correctly
+1H) % words translated correctly
 
-	I) Best 10 words
+1I) Best 10 words
 	
-	J) Worst 10 words
+1J) Worst 10 words
+
 
 2) Allow the user to reset all their data.
 
