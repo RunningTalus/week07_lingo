@@ -2,103 +2,103 @@ LINGO
 
 Objective
 
-	Create a web app that helps people learn a new language, utilizing a dynamic quiz system that allows the user to practice and test their understanding.
+Create a web app that helps people learn a new language, utilizing a dynamic quiz system that allows the user to practice and test their understanding.
 
 Resources
-	
-	1) BeGlobal API: http://languagecloud.sdl.com/translation-api
-	
-	2) node-beglobal npm module: https://github.com/robert52/node-beglobal
+
+1) BeGlobal API: http://languagecloud.sdl.com/translation-api
+
+2) node-beglobal npm module: https://github.com/robert52/node-beglobal
 
 Requirements
 
-	Part I
+Part I
 
-	Your app should consist of three main sections: Translate, Quiz, and Progress.
+Your app should consist of three main sections: Translate, Quiz, and Progress.
 
-		Translate
+Translate
 
-			1) When the user goes to the Translate page, they are presented with a form with the following fields:
+1) When the user goes to the Translate page, they are presented with a form with the following fields:
 
-				A) Language of word to translate
-				
-				B) Language to translate it into
-				
-				C) Word to translate
+	A) Language of word to translate
+	
+	B) Language to translate it into
+	
+	C) Word to translate
 
-			2) When they hit enter or the submit button, their word should be submitted to the server for translation.
+2) When they hit enter or the submit button, their word should be submitted to the server for translation.
 
-			3) The server should translate the submitted word using the node-beglobal npm module. You will have to sign up for the BeGlobal API to receive a sandbox API key which will allow them to authenticate your requests.
+3) The server should translate the submitted word using the node-beglobal npm module. You will have to sign up for the BeGlobal API to receive a sandbox API key which will allow them to authenticate your requests.
 
-			4) The user is shown the translation, or a friendly message if a translation couldn't be found.
+4) The user is shown the translation, or a friendly message if a translation couldn't be found.
 
-		Quiz
+Quiz
 
-			1) When the user goes to the Quiz page, they should first be asked what language they would like to study.
+1) When the user goes to the Quiz page, they should first be asked what language they would like to study.
 
-			2) The quiz should consist of 10 translations.
+2) The quiz should consist of 10 translations.
 
-			3) If the user gets 3 questions incorrect, they fail the quiz and must start over.
+3) If the user gets 3 questions incorrect, they fail the quiz and must start over.
 
-			4) This user should be shown a word and given a form to type in the translation. You will need to store a list of words that are used for the quiz (you can use a random word generator like this or this).
+4) This user should be shown a word and given a form to type in the translation. You will need to store a list of words that are used for the quiz (you can use a random word generator like this or this).
 
-			5) When they hit enter or the submit button, their answer should be submitted to the server for verification.
+5) When they hit enter or the submit button, their answer should be submitted to the server for verification.
 
-			6) The server should check if the submitted answer is correct using the node-beglobal npm module. 
+6) The server should check if the submitted answer is correct using the node-beglobal npm module. 
 
-			7) If the user gets the answer incorrect, they should be shown the correct answer.
+7) If the user gets the answer incorrect, they should be shown the correct answer.
 
-			8) If the user gets the answer correct, they should be shown a success message.
+8) If the user gets the answer correct, they should be shown a success message.
 
-			9) After the user sees whether they were correct or incorrect, they should be prompted with the next word to translate.
+9) After the user sees whether they were correct or incorrect, they should be prompted with the next word to translate.
 
-			10) If the user's answer is off by just a single character, it should count as correct and they get a warning message that points out their typo.
+10) If the user's answer is off by just a single character, it should count as correct and they get a warning message that points out their typo.
 
-			11) If the user misses an accent, it should count as correct and they should get a warning message that reminds them to be careful about accents.
+11) If the user misses an accent, it should count as correct and they should get a warning message that reminds them to be careful about accents.
 
-			12) After completing 3 quizzes (successfully or unsuccessfully) allow the user to take the following different types of quizzes:
+12) After completing 3 quizzes (successfully or unsuccessfully) allow the user to take the following different types of quizzes:
 
-				A) Random - Default quiz type.
-				B) Hardest - The 10 words they have gotten wrong the most.
-				C) Least Practiced - The 10 words they have practiced the least.
-				D) Most Recent - The most recent 10 words they were tested on.
-		
-		Progress
+	A) Random - Default quiz type.
+	B) Hardest - The 10 words they have gotten wrong the most.
+	C) Least Practiced - The 10 words they have practiced the least.
+	D) Most Recent - The most recent 10 words they were tested on.
 
-			1) All of the results from the user's quizzes should be saved to a Mongo database. Allow the user to view their overall results on the Progress page. Include the following pieces of information:
+Progress
 
-				A) Total number of quizzes taken
+1) All of the results from the user's quizzes should be saved to a Mongo database. Allow the user to view their overall results on the Progress page. Include the following pieces of information:
 
-				B) Number of quizzes passed
+	A) Total number of quizzes taken
 
-				C) Number of quizzes failed
+	B) Number of quizzes passed
 
-				D) % quizzes passed
+	C) Number of quizzes failed
 
-				E) Total number of words translated
+	D) % quizzes passed
 
-				F) Number of words correctly translated
+	E) Total number of words translated
 
-				G) Number of words incorrectly translated
+	F) Number of words correctly translated
 
-				H) % words translated correctly
+	G) Number of words incorrectly translated
 
-				I) Best 10 words
-				
-				J) Worst 10 words
+	H) % words translated correctly
 
-			2) Allow the user to reset all their data.
+	I) Best 10 words
+	
+	J) Worst 10 words
 
-	Bonus
+2) Allow the user to reset all their data.
 
-	Convert the application into a multi-user environment. This requires adding authentication and changing how you are storing information in the database.
+Bonus
 
-		1) Use Passport to handle user authentication.
+Convert the application into a multi-user environment. This requires adding authentication and changing how you are storing information in the database.
 
-		2) Add a registation page or allow the user to login with Facebook (see Passport documentation).
+1) Use Passport to handle user authentication.
 
-		3) Add a login page.
+2) Add a registation page or allow the user to login with Facebook (see Passport documentation).
 
-		4) Adjust the database code to save quizzes and progress for each user separately.
+3) Add a login page.
 
-		5) Add a section to the Progress page that compares the user's overall translation accuracy with all other users.
+4) Adjust the database code to save quizzes and progress for each user separately.
+
+5) Add a section to the Progress page that compares the user's overall translation accuracy with all other users.
