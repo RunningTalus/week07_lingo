@@ -1,10 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var BeGlobal = require('node-beglobal');
 
-var beglobal = new BeGlobal.BeglobalAPI({
-	api_token: 'iWO%2FU0dzxF8YIjkGCaghVw%3D%3D'
-});
+var request = require('request');
+var translateController = require('./controllers/translate.js');
+
 
 var app = express();
 app.set('view engine', 'jade');
@@ -19,6 +18,8 @@ app.get('/', function(req, res) {
 app.get('/translate', function(req, res) {
 	res.render('translate');
 });
+
+app.get('/translate/session', translateController.translate);
 
 var server = app.listen(3444, function() {
 	console.log('Express server listening on port ' + server.address().port);

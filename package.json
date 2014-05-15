@@ -4,6 +4,7 @@
     "express": "4.x",
     "jade": "1.x",
     "mongoose": "^3.8.9",
-    "node-beglobal": "0.0.1-3"
+    "node-beglobal": "0.0.1-3",
+    "request": "^2.34.0"
   }
 }
