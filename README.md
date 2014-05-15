@@ -5,20 +5,25 @@ Objective
 	Create a web app that helps people learn a new language, utilizing a dynamic quiz system that allows the user to practice and test their understanding.
 
 Resources
+	
 	1) BeGlobal API: http://languagecloud.sdl.com/translation-api
+	
 	2) node-beglobal npm module: https://github.com/robert52/node-beglobal
 
 Requirements
 
 	Part I
-		Your app should consist of three main sections: Translate, Quiz, and Progress.
+
+	Your app should consist of three main sections: Translate, Quiz, and Progress.
 
 		Translate
 
 			1) When the user goes to the Translate page, they are presented with a form with the following fields:
 
 				A) Language of word to translate
+				
 				B) Language to translate it into
+				
 				C) Word to translate
 
 			2) When they hit enter or the submit button, their word should be submitted to the server for translation.
@@ -60,24 +65,40 @@ Requirements
 		
 		Progress
 
-			1) 
-				A)
-				B)
-				C)
-				D)
-				E)
-				F)
-				G)
-				H)
-				I)
-				J)
+			1) All of the results from the user's quizzes should be saved to a Mongo database. Allow the user to view their overall results on the Progress page. Include the following pieces of information:
 
-			2) 
+				A) Total number of quizzes taken
+
+				B) Number of quizzes passed
+
+				C) Number of quizzes failed
+
+				D) % quizzes passed
+
+				E) Total number of words translated
+
+				F) Number of words correctly translated
+
+				G) Number of words incorrectly translated
+
+				H) % words translated correctly
+
+				I) Best 10 words
+				
+				J) Worst 10 words
+
+			2) Allow the user to reset all their data.
 
 	Bonus
 
-		1) 
-		2) 
-		3)
-		4)
-		5)
+	Convert the application into a multi-user environment. This requires adding authentication and changing how you are storing information in the database.
+
+		1) Use Passport to handle user authentication.
+
+		2) Add a registation page or allow the user to login with Facebook (see Passport documentation).
+
+		3) Add a login page.
+
+		4) Adjust the database code to save quizzes and progress for each user separately.
+
+		5) Add a section to the Progress page that compares the user's overall translation accuracy with all other users.
