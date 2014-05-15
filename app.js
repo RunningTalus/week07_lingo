@@ -1,11 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var app = express();
 
 var request = require('request');
+var mongoose = require('mongoose');
+
 var translateController = require('./controllers/translate.js');
+var quizController = require('./controllers/quiz.js');
 
-
-var app = express();
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
@@ -20,6 +22,8 @@ app.get('/translate', function(req, res) {
 });
 
 app.get('/translate/session', translateController.translate);
+
+app.get('/quiz', quizController.quiz);
 
 var server = app.listen(3444, function() {
 	console.log('Express server listening on port ' + server.address().port);
