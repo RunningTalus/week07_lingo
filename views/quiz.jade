@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	h1 You've studied hard, and now it's time to test your might with the quiz!
+	h2 This quiz will consist of 10 questions. 
+	h3 You must answer 8/10 questions to pass.  Good Luck!
+	h3#transfrom Choose what language you'd like to translate from: 
+		button.btn.btn-success.transfrom(type="button" role="button" name="English" data-lang="eng") English
+		button.btn.btn-primary.transfrom(type="button" role="button" name="French" data-lang="fre") French
+		button.btn.btn-danger.transfrom(type="button" role="button" name="German" data-lang="ger") German
+		button.btn.btn-warning.transfrom(type="button" role="button" name="Spanish" data-lang="spa") Spanish
+	h3#transto Choose what language you'd like to translate to: 
+		button.btn.btn-success.transto(type="button" role="button" name="English" data-lang="eng") English
+		button.btn.btn-primary.transto(type="button" role="button" name="French" data-lang="fre") French
+		button.btn.btn-danger.transto(type="button" role="button" name="German" data-lang="ger") German
+		button.btn.btn-warning.transto(type="button" role="button" name="Spanish" data-lang="spa") Spanish
+	br
+	button.btn.btn-info.start(type="button" role="button") Start the quiz!

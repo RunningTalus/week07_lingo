@@ -24,6 +24,8 @@ app.get('/translate', function(req, res) {
 app.get('/translate/session', translateController.translate);
 
 app.get('/quiz', quizController.quiz);
+app.post('/quiz/question', quizController.createQuestion);
+
 
 var server = app.listen(3444, function() {
 	console.log('Express server listening on port ' + server.address().port);

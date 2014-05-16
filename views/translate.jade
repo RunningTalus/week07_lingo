@@ -2,13 +2,15 @@ extends layout
 
 block content
 	h1 Translate something awesome!	
-	h2 This quiz will consist of 10 questions. You must get 8 out of 10 answers correct.
-	form#translate
-		input#transfrom(type="text", placeholder="Translate From", name="transfrom")
-		input#transto(type="text", placeholder="Translate To", name="transto")
+	form-group#translate
+		input#transfrom(type="text", placeholder="Language from...", name="transfrom")
+		br
+		input#transto(type="text", placeholder="Language to..", name="transto")
+		br
 		input#transword(type="text", placeholder="Word to Translate", name="transword")
+		br
 		input(type="submit")
 	h2 Translation: 
 		h3#result
-	script(src='//code.jquery.com/jquery-2.1.1.min.js')
-	script(src='/js/main.js')
+	a.btn.btn-primary(role='button' href='/quiz') Test your knowledge with the Quiz!
+block scripts			
