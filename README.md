@@ -60,8 +60,11 @@ Quiz
 12) After completing 3 quizzes (successfully or unsuccessfully) allow the user to take the following different types of quizzes:
 
 12A) Random - Default quiz type.
+
 12B) Hardest - The 10 words they have gotten wrong the most.
+
 12C) Least Practiced - The 10 words they have practiced the least.
+
 12D) Most Recent - The most recent 10 words they were tested on.
 
 Progress
