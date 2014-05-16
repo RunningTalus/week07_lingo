@@ -40,6 +40,8 @@ $(document).on('ready', function(){
 
 				var questionAnswer = "What is the translation for this word in " + langTo + " ?";	
 				console.log(questionAnswer);
+
+				//need to continue working on jQuery functionality for form and quiz
 			});
 
 		}
