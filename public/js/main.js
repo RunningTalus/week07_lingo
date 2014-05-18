@@ -5,10 +5,10 @@ $(document).on('ready', function(){
 		e.preventDefault();
 		console.log($(this));
 
-		$.get('/translate/session', $(this).serialize(), function(data) {
+		$.get('/translation/translate', $(this).serialize(), function(data) {
 			console.log(data);
 			var resultField = $('<div></div>');
-			$(resultField).append(data.results.translation);
+			$(resultField).append(data);
 			$('#result').empty();
 			$('#result').append(resultField);
 		});	
@@ -25,22 +25,22 @@ $(document).on('ready', function(){
 			alert("Please pick two languages");
 		}
 		else{
-			var langFrom = $('#transfrom .highlight').data("lang");
-			var langTo = $('#transto .highlight').data("lang");
-			var languages = {langTo:langTo, langFrom:langFrom};
+			var langFromCode = $('#transfrom .highlight').data("lang-code");
+			var langToCode = $('#transto .highlight').data("lang-code");
+			var queryData = {langCode:langFromCode};
 			
-			$.post('/quiz/question', languages, function(question, err){
+			$.get('/dictionary/randomWord', queryData, function(resData, err){
 				$('#container').empty();
 				// $('#container').addClass('quiz-template');
 				$(document).addClass('quiz-template');
 				$('#container').after(<div>"quiz-template"</div>);
 				
-				console.log(question);
+				console.log(resData);
 
-				var questionText = "Your " + langFrom + " word is : " + question.wordFrom + " .";
+				var questionText = "Your " + langFromCode + " word is : " + resData.word + " .";
 				console.log(questionText);
 
-				var questionAnswer = "What is the translation for this word in " + langTo + " ?";	
+				var questionAnswer = "What is the translation for this word in " + langToCode + " ?";	
 				console.log(questionAnswer);
 
 				$('.quiz-template').after('form-group');
