@@ -78,12 +78,13 @@ var Dictionary = {
 	getRandomWord:function(langCode, callback){
 		// returns a random word from the dictionary in the language specified by langCode
 		// Callback returns (err, {word:word, wordID:wordID});
-		var returnWord = {word:"", wordID:dbWord._id};
+		var returnWord = {word:"", wordID:0};
 		if (!dictionaryDB.initialized) new Error("Must initialize Dictionary before initializing.");
 		// Pick a random word from the dictionary, and fetch it from the words database
 		Word.findById(_.sample(dictionaryDB.words), function(err,dbWord){		
 			// loop through the languages already translated for the word 
 			// looking for the language requested
+			returnWord.wordID = dbWord._id;
 			for (var i = 0; i<dbWord.translations.length; i++){
 				if (dbWord.translations[i].langCode === langCode){
 					returnWord.word = dbWord.translations[i].word;
@@ -103,13 +104,13 @@ var Dictionary = {
 					langToCode:langCode
 				}
 					// go fetch the translation from the translation model
-					translation.getTranslation(translationData, function(err, transWord){
-						returnWord.word = transWord;
-						dbWord.translations.push({langCode: langCode, word:transWord});
-						dbWord.save(function(){
-							callback(err, returnWord);
-						})
-						;
+				translation.getTranslation(translationData, function(err, transWord){
+					returnWord.word = transWord;
+					dbWord.translations.push({langCode: langCode, word:transWord});
+					dbWord.save(function(){
+						callback(err, returnWord);
+					});
+					
 				})
 			}
 		});

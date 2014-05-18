@@ -51,7 +51,7 @@ app.post('/users', usersController.createUser);
 app.post('/users/answer', usersController.submitAnswer);
 
 //Save user's progress on last quiz
-app.post('/users/quiz'), 
+app.post('/users/quiz');
 
 //
 
