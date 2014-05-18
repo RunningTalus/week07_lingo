@@ -31,9 +31,13 @@ $(document).on('ready', function(){
 			
 			$.get('/dictionary/randomWord', queryData, function(resData, err){
 				$('#container').empty();
-				// $('#container').addClass('quiz-template');
-				$(document).addClass('quiz-template');
-				$('#container').after(<div>"quiz-template"</div>);
+				
+				// $( "<p id='test'>My <em>new</em> text</p>" ).appendTo( "body" );
+				var formEl = $('<form role="form"</form>');
+				var newEl = $('<div class="form-group quiz-form"><div>');
+
+				
+
 				
 				console.log(resData);
 
@@ -42,10 +46,6 @@ $(document).on('ready', function(){
 
 				var questionAnswer = "What is the translation for this word in " + langToCode + " ?";	
 				console.log(questionAnswer);
-
-				$('.quiz-template').after('form-group');
-				$('.form-group').addClass('qa-slot');
-				$('#qa-slot').addClass('q-holder', 'a-holder');
 
 
 				//need to continue working on jQuery functionality for form and quiz
