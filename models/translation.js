@@ -9,40 +9,46 @@ var beglobal = new BeGlobal.BeglobalAPI({
 var languagePairs = [];
 var languageFromNames = [];
 
-
 var Translation = module.exports = {
-	getTranslation : function (wordFrom, langFromCode, langToCode, callback){
-		console.log("Translating: ", wordFrom, " to ", langToCode);
+	getTranslation : function (inputData, callback){
+		console.log(
+			"Translating: ", 
+			inputData.wordFrom, 
+			" to ",
+			 inputData.langToCode);
+		console.log(inputData);
 		beglobal.translations.translate(
-			{text: wordFrom,
-				to: langToCode,
-				from: langFromCode},
+			{
+				text: inputData.wordFrom,
+				to: inputData.langToCode,
+				from: inputData.langFromCode},
 				function(err, results){		
-					console.log("Got: ", results.translation);
+					if(results.message) console.log("Translation message: ", results.message);
+					else console.log("Got: ", results.translation);
 					callback(err, results.translation);
 			}
 		)
 	},
 	
 	init: function(callback){
-		
-		beglobal.languages.all(
-  			function(err, results) {
-  				for (var i=0; i<results.length; i++){
-	  				languagePairs.push({
-	  					fromCode: results[i].from.code,
-						fromName: results[i].from.name,
-						toCode: results[i].to.code,
-						toName: results[i].to.name
-					})
-					languageFromNames.push(results[i].from.name);
-	  			}
-	  			// TODO: find any languages that we can't translate to from english
-	  			// and take any pairs that use those languages out of the list
-	  			languageFromNames = _.uniq(languageFromNames);
-    			callback(err);
-			}
-		)
+		// beglobal.languages.all(
+  // 			function(err, results) {
+  // 				for (var i=0; i<results.length; i++){
+	 //  				languagePairs.push({
+	 //  					fromCode: results[i].from.code,
+		// 				fromName: results[i].from.name,
+		// 				toCode: results[i].to.code,
+		// 				toName: results[i].to.name
+		// 			})
+		// 			languageFromNames.push(results[i].from.name);
+	 //  			}
+	 //  			// TODO: find any languages that we can't translate to from english
+	 //  			// and take any pairs that use those languages out of the list
+	 //  			languageFromNames = _.uniq(languageFromNames);
+  //   			callback(err, null);
+		// 	}
+		// )
+callback();
 	}
 
 }

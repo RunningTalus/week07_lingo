@@ -8,7 +8,6 @@ var _ = require('underscore');
 
 var translation = require('./translation.js');
 
-mongoose.connect('mongodb://localhost/lingo');
 
 var Word = mongoose.model('Word',
     {
@@ -30,7 +29,7 @@ var DictionaryDB = mongoose.model('Dictionary',
 
 var dictionaryDB = {initialized:false};
 
-var Dictionary = module.exports = {
+var Dictionary = {
 
 	init: function(callback){
 		// Check for dictionary in database.  If there, use it, if not, make it 
@@ -41,7 +40,7 @@ var Dictionary = module.exports = {
 					// found a dictionary, let's use it
 					dictionaryDB = data;
 					console.log("Dictionary initialized.");
-					callback();
+					callback(err, null);
 				}
 				else {
 					// no dictionary in database, gotta make one
@@ -65,8 +64,8 @@ var Dictionary = module.exports = {
 							async.parallel(asyncTasks, function(){	
 									console.log("Dictionary initialized.");					
 									dictionaryDB.initialized = true;
-									dictionaryDB.save();
-									callback();
+									dictionaryDB.save(callback);
+									
 								});	
 						})	
 					})
@@ -78,22 +77,37 @@ var Dictionary = module.exports = {
 	},
 	getRandomWord:function(langCode, callback){
 		// returns a random word from the dictionary in the language specified by langCode
-		// Callback returns {word:word, wordID:wordID};
+		// Callback returns (err, {word:word, wordID:wordID});
+		var returnWord = {word:"", wordID:dbWord._id};
 		if (!dictionaryDB.initialized) new Error("Must initialize Dictionary before initializing.");
+		// Pick a random word from the dictionary, and fetch it from the words database
 		Word.findById(_.sample(dictionaryDB.words), function(err,dbWord){		
-			var returnWord = {word:"", wordID:dbWord._id};
+			// loop through the languages already translated for the word 
+			// looking for the language requested
 			for (var i = 0; i<dbWord.translations.length; i++){
 				if (dbWord.translations[i].langCode === langCode){
 					returnWord.word = dbWord.translations[i].word;
+					//console.log("Found word in dictionary");
 					callback(err, returnWord);
+					
 				}
 			}
+			// Couldn't find desired translation for the word, so we need to go fetch one
 			if (!returnWord.word){
-					translation.getTranslation(dbWord.translations[0].word, 'eng', langCode, function(err, transWord){
+				//console.log("Looking up word: ", );
+				var translationData = {
+					// the first translation in the translation list is English, which we need to do the translation
+					// kind of a hack
+					wordFrom:dbWord.translations[0].word,
+					langFromCode:'eng',
+					langToCode:langCode
+				}
+					// go fetch the translation from the translation model
+					translation.getTranslation(translationData, function(err, transWord){
 						returnWord.word = transWord;
 						dbWord.translations.push({langCode: langCode, word:transWord});
 						dbWord.save(function(){
-							callback(err, returnWord)
+							callback(err, returnWord);
 						})
 						;
 				})
@@ -107,4 +121,6 @@ var Dictionary = module.exports = {
 		return true;
 	}
 	
-};
+} 
+
+module.exports = Dictionary;

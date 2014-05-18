@@ -4,13 +4,13 @@ module.exports = {
 	init: function(callback){
 		dictionary.init(callback);
 	},
-	getRandomWord: function(langKey, callback){
-		dictionary.getRandomWord(langKey, callback);
+	getRandomWord: function(langCode, callback){
+		dictionary.getRandomWord(langCode, callback);
 	},
-	start: function(userID, langTo, langFrom){
-
+	start: function(userID, langToCode, langFromCode){
+		
 	},
-	checkAndSaveAnswer:function(userID, langFrom, langTo, wordFrom, answer){
+	checkAndSaveAnswer:function(userID, langFromCode, langToCode, wordFrom, answer){
 		return "correct";
 	}
 	

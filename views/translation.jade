@@ -3,11 +3,11 @@ extends layout
 block content
 	h1 Translate something awesome!	
 	form-group#translate
-		input#transfrom(type="text", placeholder="Language from...", name="transfrom")
+		input#transfrom(type="text", placeholder="Language from...", name="langFromCode")
 		br
-		input#transto(type="text", placeholder="Language to..", name="transto")
+		input#transto(type="text", placeholder="Language to..", name="langToCode")
 		br
-		input#transword(type="text", placeholder="Word to Translate", name="transword")
+		input#transword(type="text", placeholder="Word to Translate", name="wordFrom")
 		br
 		input(type="submit")
 	h2 Translation: 
