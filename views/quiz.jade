@@ -1,7 +1,7 @@
 extends layout
 
 block content
-	#container
+	.container
 		h1 You've studied hard, and now it's time to test your might with the quiz!
 		h2 This quiz will consist of 10 questions. 
 		h3 You must answer 8/10 questions to pass.  Good Luck!
@@ -17,3 +17,19 @@ block content
 			button.btn.btn-warning.transto(type="button" role="button" name="Spanish" data-lang-code="spa") Spanish
 		br
 		button.btn.btn-info.start(type="button" role="button") Start the quiz!
+		script#quiz-template(type="text/x-handlebars-template").
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-8">
+					<div class="our-word-here">
+						<h2>This is your word to translate in:{{langAsked}}</h2>
+						<h3>{{wordAsked}}</h3> 
+					</div>
+					<form role="form">
+						<div class="form-group">
+							<label for="Language-To">Translate to...{{langAnswered}}</label>
+							<input type="text" class="form-control" id="language-to" placeholder="ENTER YOUR TRANSLATION/QUIZ ANSWER HERE">
+						</div>
+						<button type="submit" class="btn btn-primary btn-lg">Submit your answer</button>
+					</form>
+				</div>
+			</div>

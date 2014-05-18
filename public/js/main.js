@@ -1,6 +1,11 @@
 // on submit send the QTY#3 form fields to app.js
 
 $(document).on('ready', function(){
+	// create our template blueprint...
+	// var html = $('#tweet-template').html();
+	var html = $('#quiz-template').html();
+	// var tweetTemplate = Handlebars.compile(html);
+	var quizTemplate = Handlebars.compile(html);
 	$('#translate').on('submit', function(e){
 		e.preventDefault();
 		console.log($(this));
@@ -30,25 +35,27 @@ $(document).on('ready', function(){
 			var queryData = {langCode:langFromCode};
 			
 			$.get('/dictionary/randomWord', queryData, function(resData, err){
-				$('#container').empty();
+				$('.container').empty();
 				
-				// $( "<p id='test'>My <em>new</em> text</p>" ).appendTo( "body" );
-				var formEl = $('<form role="form"</form>');
-				var newEl = $('<div class="form-group quiz-form"><div>');
+				//-must submit: userID, langCodeAsked, wordIdAsked, langCodeAnswered, wordAnswered
+				// var templateOutput = tweetTemplate(tweets[i]);
+				var templateData = {
+					langAsked:langFromCode,
+					langAnswered:langToCode,
+					wordAsked:resData.word
+				};
+				var quizTemplateOutput = quizTemplate(templateData);
 
-				
+				$('.container').append(quizTemplateOutput);
 
-				
-				console.log(resData);
+				// console.log(resData);
 
-				var questionText = "Your " + langFromCode + " word is : " + resData.word + " .";
-				console.log(questionText);
+				// var questionText = "Your " + langFromCode + " word is : " + resData.word + " .";
+				// console.log(questionText);
 
-				var questionAnswer = "What is the translation for this word in " + langToCode + " ?";	
-				console.log(questionAnswer);
+				// var questionAnswer = "What is the translation for this word in " + langToCode + " ?";	
+				// console.log(questionAnswer);
 
-
-				//need to continue working on jQuery functionality for form and quiz
 			});
 
 		}
