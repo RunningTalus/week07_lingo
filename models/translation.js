@@ -27,7 +27,7 @@ var Translation = module.exports = {
 					else console.log("Got: ", results.translation);
 					callback(err, results.translation);
 			}
-		)
+		);
 	},
 	
 	init: function(callback){
@@ -51,5 +51,4 @@ var Translation = module.exports = {
 callback();
 	}
 
-}
-
+};

@@ -58,7 +58,7 @@ var Dictionary = {
 									var word = new Word({translations:[{langCode:"eng",word:engWord}]});
 									dictionaryDB.words.push(word);
 									word.save(asyncDone());			
-								})
+								});
 							});	
 							// kick off async tasks, and save dictionary when done
 							async.parallel(asyncTasks, function(){	
@@ -67,13 +67,13 @@ var Dictionary = {
 									dictionaryDB.save(callback);
 									
 								});	
-						})	
-					})
+						});	
+					});
 
 				}
 			});
 			
-		})	
+		});	
 	},
 	getRandomWord:function(langCode, callback){
 		// returns a random word from the dictionary in the language specified by langCode
@@ -102,7 +102,7 @@ var Dictionary = {
 					wordFrom:dbWord.translations[0].word,
 					langFromCode:'eng',
 					langToCode:langCode
-				}
+				};
 					// go fetch the translation from the translation model
 				translation.getTranslation(translationData, function(err, transWord){
 					returnWord.word = transWord;
@@ -111,7 +111,7 @@ var Dictionary = {
 						callback(err, returnWord);
 					});
 					
-				})
+				});
 			}
 		});
 	},
@@ -122,6 +122,6 @@ var Dictionary = {
 		return true;
 	}
 	
-} 
+};
 
 module.exports = Dictionary;

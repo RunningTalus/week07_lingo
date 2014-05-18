@@ -16,4 +16,4 @@ var Users = module.exports = {
 		// returns: correct:Boolean, correctWord:String
 
 	}
-}
+};

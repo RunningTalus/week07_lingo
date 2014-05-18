@@ -67,7 +67,7 @@ translationController.init(function(){
 			var server = app.listen(3444, function() {
 				console.log('Express server listening on port ' + server.address().port);
 			});
-		})
-	})
-})
+		});
+	});
+});
 

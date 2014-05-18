@@ -28,6 +28,6 @@ var Users = module.exports = {
 		);
 		user.save(function(err){
 			callback(err,user.userId);
-		})	
+		});	
 	}
-}
+};
