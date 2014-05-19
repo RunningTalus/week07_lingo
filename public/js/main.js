@@ -1,17 +1,15 @@
-// on submit send the QTY#3 form fields to app.js
-
 var quiz = {
 	langToCode:"",
 	langFromCode:"",
 	userId: 0
-
 };
 
-// create our template blueprint...
-// var html = $('#tweet-template').html();
 var html = $('#quiz-template').html();
-// var tweetTemplate = Handlebars.compile(html);
 var quizTemplate = Handlebars.compile(html);
+
+//added these to render handlebars within signin.jade
+var signinhtml = $('#signin-template').html();
+var signinTemplate = Handlebars.compile(signinhtml);
 
 var newQuestion = function(){
 
