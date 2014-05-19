@@ -6,12 +6,16 @@ var request = require('request');
 var mongoose = require('mongoose');
 
 var translationController = require('./controllers/translation.js');
-//var quizController = require('./controllers/quiz.js');
 var dictionaryController = require('./controllers/dictionary.js');
 var usersController = require('./controllers/users.js');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/lingo');
+mongoose.connect('mongodb://localhost/lingo', function(err){
+	if (err) {
+		console.log("Cannot connect to mongoose database");
+		throw err;
+	}
+});
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
@@ -40,21 +44,18 @@ app.get('/translation/languages/from', translationController.getFromLanguages);
 // must submit: langCodeFrom:String
 app.get('/translation/languages/to', translationController.getToLanguages);
 
-
 // create a new user
-// returns userId:Number
+// returns {userId:Number}
 app.post('/users', usersController.createUser);
 
 // submit a question to the user's profile, return corrct/incorrect
-// must submit: userID, langCodeAsked, wordIdAsked, langCodeAnswered, wordAnswered
-// returns: correct:Boolean, correctWord:String
-app.post('/users/answer', usersController.submitAnswer);
+// must submit: userId, langCodeAsked, wordIdAsked, langCodeAnswered, wordAnswered
+// returns: {correct:Boolean, correctWord:String}
+app.post('/users/answer', usersController.checkAndSaveAnswer);
 
-//Save user's progress on last quiz
-app.post('/users/quiz');
-
-//
-
+// Save user's progress on last quiz
+// must submit: {userId: Number, passed:Boolean}
+app.post('/users/quiz', usersController.saveQuiz);
 
 // get a random word from the dictionary
 // must submit: langCode
