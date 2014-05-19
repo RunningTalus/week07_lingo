@@ -24,12 +24,14 @@ block content
 						<h2>This is your word to translate in:{{langAsked}}</h2>
 						<h3>{{wordAsked}}</h3> 
 					</div>
-					<form role="form">
+					<form role="form" id="quiz-form">
 						<div class="form-group">
 							<label for="Language-To">Translate to...{{langAnswered}}</label>
-							<input type="text" class="form-control" id="language-to" placeholder="ENTER YOUR TRANSLATION/QUIZ ANSWER HERE">
+							<input type="text" class="form-control answer-field" id="language-to" placeholder="ENTER YOUR TRANSLATION/QUIZ ANSWER HERE">
+							<p class="answer-response"></p>
 						</div>
-						<button type="submit" class="btn btn-primary btn-lg">Submit your answer</button>
+						<button type="submit" class="btn btn-primary btn-lg submit-answer">Submit your answer</button>
+						<button type="submit" class="btn btn-primary btn-lg next-question">Next question</button>
 					</form>
 				</div>
 			</div>
