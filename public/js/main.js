@@ -4,13 +4,6 @@ var quiz = {
 	userId: 0
 };
 
-var html = $('#quiz-template').html();
-var quizTemplate = Handlebars.compile(html);
-
-//added these to render handlebars within signin.jade
-var signinhtml = $('#signin-template').html();
-var signinTemplate = Handlebars.compile(signinhtml);
-
 var newQuestion = function(){
 
 	var queryData = {langCode:quiz.langFromCode};
@@ -35,6 +28,17 @@ var newQuestion = function(){
 };
 
 $(document).on('ready', function(){
+
+	//These must be un-commented to get the quiz page to render
+	// var html = $('#quiz-template').html();
+	// var quizTemplate = Handlebars.compile(html);
+
+	//added these to render handlebars within signin.jade
+	var signinhtml = $('#signin-template').html();
+	// console.log(signinhtml);
+	var signinTemplate = Handlebars.compile(signinhtml);
+	$('.container').append(signinTemplate('data'));
+
 
 	$('#translate').on('submit', function(e){
 		e.preventDefault();
