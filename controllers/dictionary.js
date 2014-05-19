@@ -9,7 +9,7 @@ var Dictionary = module.exports = {
 		var langCode = req.query.langCode;
 		dictionaryModel.getRandomWord(langCode, function(err, data){
 			res.send(data);
-		})
+		});
 	}
 		
-}
+};

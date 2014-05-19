@@ -1,6 +1,43 @@
 // on submit send the QTY#3 form fields to app.js
 
+var quiz = {
+	langToCode:"",
+	langFromCode:"",
+	userId: 0
+
+};
+
+// create our template blueprint...
+// var html = $('#tweet-template').html();
+var html = $('#quiz-template').html();
+// var tweetTemplate = Handlebars.compile(html);
+var quizTemplate = Handlebars.compile(html);
+
+var newQuestion = function(){
+
+	var queryData = {langCode:quiz.langFromCode};
+	
+	$.get('/dictionary/randomWord', queryData, function(resData, err){
+		$('.container').empty();
+		
+		//-must submit: userID, langCodeAsked, wordIdAsked, langCodeAnswered, wordAnswered
+		// var templateOutput = tweetTemplate(tweets[i]);
+		var templateData = {
+			langAsked:quiz.langFromCode,
+			langAnswered:quiz.langToCode,
+			wordAsked:resData.word
+		};
+
+		var quizTemplateOutput = quizTemplate(templateData);
+
+		$('.container').append(quizTemplateOutput);
+		$('.next-question').css("display", "none");
+	});
+
+};
+
 $(document).on('ready', function(){
+
 	$('#translate').on('submit', function(e){
 		e.preventDefault();
 		console.log($(this));
@@ -25,28 +62,29 @@ $(document).on('ready', function(){
 			alert("Please pick two languages");
 		}
 		else{
-			var langFromCode = $('#transfrom .highlight').data("lang-code");
-			var langToCode = $('#transto .highlight').data("lang-code");
-			var queryData = {langCode:langFromCode};
+			quiz.langFromCode = $('#transfrom .highlight').data("lang-code");
+			quiz.langToCode = $('#transto .highlight').data("lang-code");
 			
-			$.get('/dictionary/randomWord', queryData, function(resData, err){
-				$('#container').empty();
-				$('#container').addClass('quiz-template');
-				
-				console.log(resData);
-
-				var questionText = "Your " + langFromCode + " word is : " + resData.word + " .";
-				console.log(questionText);
-
-				var questionAnswer = "What is the translation for this word in " + langToCode + " ?";	
-				console.log(questionAnswer);
-
-				//need to continue working on jQuery functionality for form and quiz
-			});
+			newQuestion();
 
 		}
-
-
-
 	});
-});	
+
+	$(document).on('submit', '#quiz-form', function(e){
+		console.log($(this));
+		e.preventDefault();
+		$('.next-question').css("display", "block");
+		$('.submit-answer').css("display", "none");
+		$('.answer-field').css("display", "none");
+		$('.answer-response').css("display","block");
+		$('.answer-response').text("PLACEHOLDER FOR SERVER RESPONSE");
+		// wrap into a function
+		// grab the answer
+		// submit the answer to the server
+		// retrieve the answer from the server
+		// take out the submit button (hide)
+		// display correct/incorrect answer
+		// display new button for the next question
+			//add to template and hide/unhide
+	});
+});

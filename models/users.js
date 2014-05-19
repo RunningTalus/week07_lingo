@@ -51,4 +51,4 @@ var Users = module.exports = {
 
 		callback();
 	}
-}
+};

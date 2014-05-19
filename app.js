@@ -26,6 +26,10 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
+app.get('/signin', function(req, res) {
+	res.render('signin');
+});
+
 app.get('/translation', function(req, res) {
 	res.render('translation');
 });
@@ -68,7 +72,7 @@ translationController.init(function(){
 			var server = app.listen(3444, function() {
 				console.log('Express server listening on port ' + server.address().port);
 			});
-		})
-	})
-})
+		});
+	});
+});
 

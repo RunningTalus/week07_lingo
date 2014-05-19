@@ -47,4 +47,4 @@ var Users = module.exports = {
 	saveQuiz: function(req, res){
 
 	}
-}
+};
